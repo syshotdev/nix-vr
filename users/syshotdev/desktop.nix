@@ -13,10 +13,10 @@
 
   home.packages = with pkgs; [ 
     # Nvidia specific stuff
-    #nvidia-system-monitor-qt
+    nvidia-system-monitor-qt
 
     # VR
-    #unstable.alvr
-    #immersed-vr
+    unstable.alvr
+    immersed-vr
   ];
 }
