@@ -9,13 +9,13 @@
 }: 
 {
   imports = [
-    #outputs.systemModules.optimizations.cpu
-    #outputs.systemModules.optimizations.gpu
-    #outputs.systemModules.optimizations.intel-cpu
-    #outputs.systemModules.optimizations.nvidia
-    #outputs.systemModules.steam
-    #outputs.systemModules.kitty
-    #outputs.systemModules.vr.monado
+    outputs.systemModules.optimizations.cpu
+    outputs.systemModules.optimizations.gpu
+    outputs.systemModules.optimizations.intel-cpu
+    outputs.systemModules.optimizations.nvidia
+    outputs.systemModules.steam
+    outputs.systemModules.kitty
+    outputs.systemModules.vr.monado
 
     outputs.scriptModules
     ./hardware-configuration.nix
