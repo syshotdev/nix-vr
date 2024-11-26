@@ -85,28 +85,6 @@
     xkb.variant = ""; # No idea what this means
   };
 
-  environment.etc."dconf/db/local.d/00_custom-keybindings" = {
-    text = ''
-      [org/cinnamon/desktop/keybindings/custom-keybindings/custom0]
-      name='Take Screenshot'
-      command='gnome-screenshot -a'
-      binding=['<Super><Shift>s']
-    '';
-  };
-
-  environment.etc."dconf/db/local.d/locks/keybindings" = {
-    text = ''
-      # Prevent overriding custom keybindings
-    '';
-  };
-
-  systemd.services.dconf-update = {
-    description = "Update dconf database";
-    after = [ "multi-user.target" ];
-    serviceConfig.ExecStart = "${pkgs.dconf}/bin/dconf update";
-    wantedBy = [ "multi-user.target" ];
-  };
-
   # Sound stuff
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -118,28 +96,6 @@
     pulse.enable = true;
   };
 
-  # This is for specifically (my) brother printer, may work with other companies's printers
-  services.printing = {
-    enable = true;
-
-    drivers = with pkgs; [ 
-      gutenprint
-      #gutenprintBin
-      brlaser 
-      brgenml1lpr
-      brgenml1cupswrapper
-    ];
-  };
-  services.avahi = { # Also printing stuff
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-    publish = {
-      enable = true;
-      userServices = true;
-    };
-  };
-  
   # Fonts because Chinese / Unicode characters don't show up correctly
   fonts.packages = with pkgs; [
     noto-fonts

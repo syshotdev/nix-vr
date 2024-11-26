@@ -1,6 +1,42 @@
-{
-  description = "Syshotdev's SECRET system configuration flake";
+# Alright here's the plan:
+# Basically, fix this flake to be as simple as physically possible
+# nix-collect-garbage
+# Add each required thing for running VR
+# Test, test, test.
+# Fix issues
 
+# Once VR is completely and utterly done, start cleaning up other configs
+# Since I have much more knowledge on what the heck everything does in
+# nix, I can definitely simplify my config and make it soooo much less of
+# a hassle to work with.
+#
+# Examples:
+# Do I neeeed multiple user dirs? I mean, per machine config is nice, but maybe some if statements
+# would do better and be simpler.
+#
+# Share base.nix for all computers from simple-nixos-config
+#
+# Add unstable packages as a variable, and import that to everything instead of overlaying it in
+# the computer/configuration.nix file. 
+#
+# Instead of using outputs."someModules".development.neovim,
+# maybe there's a less verbose way of saying that?
+#
+# Rename configuration.nix maybe?
+#
+# Use imports instead of import
+#
+# Simplify the modules directory. (Add readmes or documentation on how to make things work)
+#
+# Split beginner-nixos-config into modules and itself
+#
+# Put all of these things into TODO.txt in the other repo
+
+
+{
+  description = "Syshotdev's flake for VR, gonna be a long rebuild when I Garbage Collect";
+
+  /*
   nixConfig = {
     extra-substituters = [
       "https://nix-community.cachix.org"
@@ -9,16 +45,15 @@
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
     ];
-  };
+  };*/
 
   inputs = {
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
 
     modules.url = "github:syshotdev/beginner-nixos-config";
-    #modules = { type = "path"; path = "./path/to/local/modules"; };
 
-    nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
+    #nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
 
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
@@ -27,7 +62,6 @@
   outputs = {
     self,
     home-manager,
-    nixpkgs-xr,
     nixpkgs,
     ...
   } @ inputs: let
@@ -56,7 +90,6 @@
           home-manager.nixosModules.home-manager {
             home-manager.extraSpecialArgs = specialArgs;
           }
-          nixpkgs-xr.nixosModules.nixpkgs-xr
           
           ./computers/${computer}/configuration.nix
         ];

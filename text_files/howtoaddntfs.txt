@@ -1,3 +1,0 @@
-sudo ntfsfix /dev/sda1
-sudo mkdir /run/media/syshotdev/Toshiba\ EXD
-sudo ntfs-3g /dev/sda1 /run/media/syshotdev/Toshiba\ EXD -o force
