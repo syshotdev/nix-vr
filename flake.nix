@@ -60,16 +60,16 @@
   };
 
   outputs = {
-    self,
+    inputs,
+    outputs,
     home-manager,
     nixpkgs,
     ...
-  } @ inputs: let
-    inherit (self) outputs;
-
+  }: 
+  let
     lib = inputs.nixpkgs.lib;
-    computer = "desktop";
     specialArgs = {inherit inputs outputs nixpkgs computer;};
+    computer = "desktop";
   in {
     # https://discourse.nixos.org/t/mixing-stable-and-unstable-packages-on-flake-based-nixos-system/50351/4
     # Add unstable packages
@@ -83,15 +83,17 @@
     ];
     hashedPassword = "...";
 
-    systemModules = inputs.modules.outputs.systemModules;
-    homeModules = inputs.modules.outputs.homeModules;
-    scriptModules = inputs.modules.outputs.scriptModules;
+    #systemModules = inputs.modules.outputs.systemModules;
+    #homeModules = inputs.modules.outputs.homeModules;
+    #scriptModules = inputs.modules.outputs.scriptModules;
+    systemModules = ./modules/system;
+    homeModules = ./modules/home;
+    scriptModules = ./modules/scripts;
+    customPackages = ./modules/custom-packages;
 
     # Custom packages (to be built) not in the nix repository
     # This variable *only* lists the paths to the packages, you have to build them and include them into pkgs.
-    customPackages = inputs.modules.outputs.customPackages;
-
-    overlays = inputs.modules.outputs.overlays;
+    #customPackages = inputs.modules.outputs.customPackages;
 
     nixosConfigurations = {
       "${computer}" = nixpkgs.lib.nixosSystem {
