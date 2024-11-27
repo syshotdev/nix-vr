@@ -60,13 +60,13 @@
   };
 
   outputs = {
-    inputs,
-    outputs,
+    self,
     home-manager,
     nixpkgs,
     ...
-  }: 
+  } @ inputs: 
   let
+    inherit (self) outputs;
     specialArgs = {inherit inputs outputs nixpkgs computer;};
     computer = "desktop";
   in {
@@ -80,15 +80,21 @@
         };
       })
     ];
+    nixpkgs.config = {
+      allowUnfree = true; # Allow proprietary packages
+      # Workaround for https://github.com/nix-community/home-manager/issues/2942
+      allowUnfreePredicate = (_: true); # Ima be honest Idk if it was an issue in the first place
+    };
+
     hashedPassword = "...";
 
     #systemModules = inputs.modules.outputs.systemModules;
     #homeModules = inputs.modules.outputs.homeModules;
     #scriptModules = inputs.modules.outputs.scriptModules;
-    systemModules = ./modules/system;
-    homeModules = ./modules/home;
-    scriptModules = ./modules/scripts;
-    customPackages = ./modules/custom-packages;
+    systemModules = import ./modules/system;
+    homeModules = import ./modules/home;
+    scriptModules = import ./modules/scripts;
+    customPackages = import ./modules/custom-packages;
 
     # Custom packages (to be built) not in the nix repository
     # This variable *only* lists the paths to the packages, you have to build them and include them into pkgs.
@@ -102,7 +108,7 @@
             home-manager.extraSpecialArgs = specialArgs;
           }
           
-          ./computers/${computer}/configuration.nix
+          ./computers/${computer}
         ];
       };
     };
