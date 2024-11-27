@@ -67,7 +67,6 @@
     ...
   }: 
   let
-    lib = inputs.nixpkgs.lib;
     specialArgs = {inherit inputs outputs nixpkgs computer;};
     computer = "desktop";
   in {
