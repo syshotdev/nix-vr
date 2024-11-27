@@ -51,15 +51,15 @@
       },
       "locked": {
         "lastModified": 1732498591,
-        "narHash": "sha256-JNeZ9IuSoRcMXLPqJTVZMfZPMfXvYnNFIvMHrf+qOJk=",
+        "narHash": "sha256-R3LOSd+683xmn/Q4ixDnPDm+0DnsLWNDNEFNxRadFAI=",
         "owner": "syshotdev",
-        "repo": "beginner-nixos-config",
-        "rev": "2de130941b4eee94bbe2baa6f8c4cc83a50eef76",
+        "repo": "nixos-modules",
+        "rev": "3738e9d6c7ebe385dc97a76a161d7acb4a217d83",
         "type": "github"
       },
       "original": {
         "owner": "syshotdev",
-        "repo": "beginner-nixos-config",
+        "repo": "nixos-modules",
         "type": "github"
       }
     },

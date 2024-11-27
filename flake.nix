@@ -51,7 +51,9 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
 
-    modules.url = "github:syshotdev/beginner-nixos-config";
+    modules = {
+      url = "github:syshotdev/nixos-modules";
+    };
 
     #nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
 
