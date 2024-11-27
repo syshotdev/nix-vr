@@ -71,6 +71,16 @@
     computer = "desktop";
     specialArgs = {inherit inputs outputs nixpkgs computer;};
   in {
+    # https://discourse.nixos.org/t/mixing-stable-and-unstable-packages-on-flake-based-nixos-system/50351/4
+    # Add unstable packages
+    nixpkgs.overlays = [
+      (final: _: {
+        unstable = import inputs.nixpkgs-unstable {
+          inherit (final.stdenv.hostPlatform) system;
+          inherit (final) config;
+        };
+      })
+    ];
     hashedPassword = "...";
 
     systemModules = inputs.modules.outputs.systemModules;
