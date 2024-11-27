@@ -72,35 +72,21 @@
     specialArgs = {inherit inputs outputs nixpkgs computer;};
     computer = "desktop";
   in {
-    # https://discourse.nixos.org/t/mixing-stable-and-unstable-packages-on-flake-based-nixos-system/50351/4
-    # Add unstable packages
-    nixpkgs.overlays = [
-      (final: _: {
-        unstable = import inputs.nixpkgs-unstable {
-          inherit (final.stdenv.hostPlatform) system;
-          inherit (final) config;
-        };
-      })
-    ];
-    nixpkgs.config = {
-      allowUnfree = true; # Allow proprietary packages
-      # Workaround for https://github.com/nix-community/home-manager/issues/2942
-      allowUnfreePredicate = (_: true); # Ima be honest Idk if it was an issue in the first place
-    };
 
     hashedPassword = "...";
 
-    #systemModules = inputs.modules.outputs.systemModules;
-    #homeModules = inputs.modules.outputs.homeModules;
-    #scriptModules = inputs.modules.outputs.scriptModules;
-    systemModules = import ./modules-repo/modules/system;
-    homeModules = import ./modules-repo/modules/home;
-    scriptModules = import ./modules-repo/modules/scripts;
-    customPackages = import ./modules-repo/modules/custom-packages;
+    systemModules = inputs.modules.outputs.systemModules;
+    homeModules = inputs.modules.outputs.homeModules;
+    scriptModules = inputs.modules.outputs.scriptModules;
 
     # Custom packages (to be built) not in the nix repository
     # This variable *only* lists the paths to the packages, you have to build them and include them into pkgs.
-    #customPackages = inputs.modules.outputs.customPackages;
+    customPackages = inputs.modules.outputs.customPackages;
+
+    #systemModules = import ./modules-repo/modules/system;
+    #homeModules = import ./modules-repo/modules/home;
+    #scriptModules = import ./modules-repo/modules/scripts;
+    #customPackages = import ./modules-repo/modules/custom-packages;
 
     nixosConfigurations = {
       "${computer}" = nixpkgs.lib.nixosSystem {

@@ -1,8 +1,7 @@
 # Every single user's base
-{outputs, lib, user, pkgs,  ...}:
+{ inputs, outputs, lib, user, pkgs,  ...}:
 {
   imports = [
-    (import ./home-manager-boilerplate-code.nix { inherit user pkgs outputs; } )
     outputs.homeModules.other.firefox
   ];
   # Make extra directories
@@ -19,6 +18,21 @@
   programs.home-manager.enable = true;
   programs.git.enable = true;
 
+  # https://discourse.nixos.org/t/mixing-stable-and-unstable-packages-on-flake-based-nixos-system/50351/4
+  # Add unstable packages
+  nixpkgs.overlays = [
+    (final: _: {
+      unstable = import inputs.nixpkgs-unstable {
+        inherit (final.stdenv.hostPlatform) system;
+        inherit (final) config;
+      };
+    })
+  ];
+  nixpkgs.config = {
+    allowUnfree = true; # Allow proprietary packages
+    # Workaround for https://github.com/nix-community/home-manager/issues/2942
+    allowUnfreePredicate = (_: true); # Ima be honest Idk if it was an issue in the first place
+  };
 
   home = {
     username = "${user}";

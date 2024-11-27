@@ -35,8 +35,6 @@
 
   nix.settings.trusted-users = ["sudo" "syshotdev"]; # Who is given sudo permissions
 
-  nixpkgs.overlays = [outputs.overlays.unstable-packages]; # I think this adds unstable packages
-
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.05";
 }
