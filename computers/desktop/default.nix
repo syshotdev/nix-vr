@@ -15,7 +15,6 @@
     outputs.systemModules.optimizations.nvidia-gpu
     outputs.systemModules.steam
     outputs.systemModules.kitty
-    outputs.systemModules.vr.monado
 
     outputs.scriptModules
     ./hardware-configuration.nix
