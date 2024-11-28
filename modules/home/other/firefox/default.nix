@@ -37,24 +37,6 @@ in {
         };
         SearchEngines = {
           PreventInstalls = true;
-          Add = [
-            {
-              Name = "NixOS Search";
-              Alias = "nix";
-              Method = "GET";
-              Description = "Search NixOS packages";
-              PostData = "";
-              URLTemplate = "https://search.nixos.org/packages?channel=unstable&query={searchTerms}";
-            }
-            {
-              Name = "Brave Search";
-              Alias = "brave";
-              Method = "GET";
-              Description = "Search on the Brave search engine.";
-              PostData = "";
-              URLTemplate = "https://search.brave.com/search?q={searchTerms}";
-            }
-          ];
         };
         FirefoxHome = {
           Search = true;
@@ -62,10 +44,6 @@ in {
           Snippets = false;
           TopSites = false;
           Highlights = false;
-        };
-        Homepage = {
-          URL = "https://search.brave.com";
-          Locked = true;
         };
         Preferences = {
           "browser.theme.content-theme" = "dark";
@@ -103,10 +81,8 @@ in {
         in
           listToAttrs [
             (extension "ublock-origin" "uBlock0@raymondhill.net")
-            (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
             (extension "youtube-shorts-block" "{34daeb50-c2d2-4f14-886a-7160b24d66a4}")
             (extension "sponsorBlocker@ajay.app" "sponsorblock")
-            (extension "toolkit-for-ynab" "{4F1FB113-D7D8-40AE-A5BA-9300EAEA0F51}")
             (extension "nicothin-dark-theme" "{99c277af-d778-4a0b-9faa-b1d8165f0a55}")
             (extension "nicothin-space" "{22b0eca1-8c02-4c0d-a5d7-6604ddd9836e}")
           ];
@@ -116,11 +92,6 @@ in {
           id = 0;
           name = "home";
           isDefault = true;
-        };
-        work = {
-          id = 1;
-          name = "work";
-          isDefault = false;
         };
       };
     };
