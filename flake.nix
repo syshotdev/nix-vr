@@ -35,6 +35,28 @@
 #
 # Put all of these things into TODO.txt in the other repo
 
+# All the current errors that I am facing (With vr)
+/*
+ find: ‘/proc/1541968/fd/0’: Permission denied
+11/28 20:16:46 /tmp/dumps: is not owned by us - delete and recreate.
+11/28 20:16:46 /tmp/dumps: could not delete, skipping.
+sh: 1: xdg-mime: not found
+vrcompositor-launcher.sh[1551814]: exec /home/syshotdev/.local/share/Steam/steamapps/common/SteamVR/bin/linux64/vrcompositor-launcher
+Using vrcompositor capability proxy
+Failed to raise ambient cap
+Launching /home/syshotdev/.local/share/Steam/steamapps/common/SteamVR/bin/linux64/vrcompositor
+*** stack smashing detected ***: terminated
+Qt: Session management error: None of the authentication protocols specified are supported
+sh: 1: xdg-icon-resource: not found
+sh: 1: xdg-mime: not found
+libpng warning: iCCP: known incorrect sRGB profile
+QVRMonitorHeadsetWarning(0x56444565c850)  does not have a property named  "green_color"
+CQVRMonitorHeadsetWarning(0x56444565c850)  does not have a property named  "red_color"
+Initialize() is failed!!!
+qt.network.ssl: QSslSocket: cannot resolve CRYPTO_num_locks
+DRM kernel driver 'nvidia-drm' in use. NVK requires nouveau.
+Destroy() is failed!!
+*/
 
 {
   description = "Syshotdev's flake for VR, gonna be a long rebuild when I Garbage Collect";
