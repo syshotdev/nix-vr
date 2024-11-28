@@ -16,7 +16,6 @@
     nvidia-system-monitor-qt
 
     # VR
-    unstable.alvr
     immersed-vr
   ];
 }

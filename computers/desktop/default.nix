@@ -16,6 +16,8 @@
     outputs.systemModules.steam
     outputs.systemModules.kitty
 
+    outputs.systemModules.vr.alvr
+
     outputs.scriptModules
     ./hardware-configuration.nix
     ../base.nix
