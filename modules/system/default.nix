@@ -1,4 +1,3 @@
-{...}:
 {
   optimizations = import ./optimizations;
   vr = import ./vr;
