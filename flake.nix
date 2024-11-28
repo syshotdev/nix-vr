@@ -86,7 +86,7 @@
     # This variable *only* lists the paths to the packages, you have to build them and include them into pkgs.
     #customPackages = inputs.modules.outputs.customPackages;
 
-    systemModules = import ./modules/system;
+    systemModules = import ./modules/system/default.nix;
     homeModules = import ./modules/home;
     scriptModules = import ./modules/scripts;
     customPackages = import ./modules/custom-packages;
