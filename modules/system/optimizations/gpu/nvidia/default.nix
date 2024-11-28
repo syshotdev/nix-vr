@@ -11,9 +11,9 @@
     powerManagement.finegrained = false;
   };
 
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
+
   # Some guy says this will fix "DRM kernel driver 'nvida-drm in use. NVK requires nouveau"
   boot.kernelParams = [ "nvidia-drm.fbdev=1" ];
-
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
 }
 

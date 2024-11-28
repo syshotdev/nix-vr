@@ -30,6 +30,9 @@
 #
 # Split beginner-nixos-config into modules and itself
 #
+# Special lib function for grabbing all folders in a dir, and adding them all as attributes
+# with the name of the folder as the name of the attribute, and the path to the folder
+#
 # Put all of these things into TODO.txt in the other repo
 
 
@@ -75,18 +78,18 @@
 
     hashedPassword = "...";
 
-    systemModules = inputs.modules.outputs.systemModules;
-    homeModules = inputs.modules.outputs.homeModules;
-    scriptModules = inputs.modules.outputs.scriptModules;
+    #systemModules = inputs.modules.outputs.systemModules;
+    #homeModules = inputs.modules.outputs.homeModules;
+    #scriptModules = inputs.modules.outputs.scriptModules;
 
     # Custom packages (to be built) not in the nix repository
     # This variable *only* lists the paths to the packages, you have to build them and include them into pkgs.
-    customPackages = inputs.modules.outputs.customPackages;
+    #customPackages = inputs.modules.outputs.customPackages;
 
-    #systemModules = import ./modules-repo/modules/system;
-    #homeModules = import ./modules-repo/modules/home;
-    #scriptModules = import ./modules-repo/modules/scripts;
-    #customPackages = import ./modules-repo/modules/custom-packages;
+    systemModules = import ./modules/system;
+    homeModules = import ./modules/home;
+    scriptModules = import ./modules/scripts;
+    customPackages = import ./modules/custom-packages;
 
     nixosConfigurations = {
       "${computer}" = nixpkgs.lib.nixosSystem {
