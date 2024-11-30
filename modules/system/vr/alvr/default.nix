@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   programs.alvr = {
+    package = pkgs.unstable.alvr;
     enable = true;
     openFirewall = true;
   };
