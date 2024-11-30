@@ -4,6 +4,8 @@ let
 in {
   programs.git = {
     enable = true;
+    # Large-file-system, for downloading large files
+    lfs.enable = true;
     userName = "${nickname}";
     userEmail = "${email}";
 
