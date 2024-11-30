@@ -23,14 +23,6 @@
     ../base.nix
   ];
 
-  # This don't work?
-  environment.variables = {
-    TEST_THING_Y_1  = "It\ works!!!";
-    XDG_CACHE_HOME  = "$HOME/.cache";
-    XDG_CONFIG_HOME = "$HOME/.config";
-    XDG_DATA_HOME   = "$HOME/.local/share";
-    XDG_STATE_HOME  = "$HOME/.local/state";
-  };
 
   users.users = {
     "syshotdev" = {
