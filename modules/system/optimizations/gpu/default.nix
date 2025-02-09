@@ -1,5 +1,8 @@
 { config, lib, pkgs, ... }:
 {
+  environment.systemPackages = with pkgs; [
+    gtk-engine-murrine
+  ];
   hardware.opengl = {
     enable = true;
     driSupport = true;

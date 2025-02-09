@@ -22,6 +22,7 @@
     ./hardware-configuration.nix
     ../base.nix
   ];
+  programs.nix-ld.enable = true;
 
 
   users.users = {
