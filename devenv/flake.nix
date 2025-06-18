@@ -32,6 +32,7 @@
             steam-run
             nixgl
             vrRun
+            usbutils
           ];
 
           shellHook = ''
