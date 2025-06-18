@@ -34,7 +34,7 @@ echo $VRCLIENT
 echo $(ldd $VRCLIENT)
 
 # Run the application with steam-run, passing all arguments
-#steam-run "$@"
+steam-run "$@"
 
 # Run application by itself
-exec $@
+#exec $@
