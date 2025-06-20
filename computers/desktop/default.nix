@@ -9,21 +9,23 @@
 }: 
 {
   imports = [
-    outputs.systemModules.optimizations.cpu
-    outputs.systemModules.optimizations.gpu
-    outputs.systemModules.optimizations.intel-cpu
-    outputs.systemModules.optimizations.nvidia-gpu
-    outputs.systemModules.steam
-    outputs.systemModules.kitty
+    outputs.system.optimizations.cpu
+    outputs.system.optimizations.gpu
+    outputs.system.optimizations.intel-cpu
+    outputs.system.optimizations.nvidia-gpu
+    #outputs.system.steam
+    outputs.modulesSystem.kitty
 
-    outputs.systemModules.vr.alvr
+    #outputs.system.vr.alvr
 
-    outputs.scriptModules
+    outputs.scripts
     ./hardware-configuration.nix
     ../base.nix
   ];
-  programs.nix-ld.enable = true;
 
+  environment.systemPackages = with pkgs; [
+    nvidia-system-monitor-qt
+  ];
 
   users.users = {
     "syshotdev" = {
@@ -33,11 +35,10 @@
     };
   };
 
-  # Create the users. /users/{user}/{computer}.nix (Works on every nixos rebuild)
-  home-manager.users.syshotdev = import ../../users/syshotdev/${computer}.nix;
+  home-manager.users.syshotdev = import ../../users/syshotdev;
 
   nix.settings.trusted-users = ["sudo" "syshotdev"]; # Who is given sudo permissions
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.05";
 }

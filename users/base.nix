@@ -2,7 +2,7 @@
 { inputs, outputs, lib, user, pkgs,  ...}:
 {
   imports = [
-    outputs.homeModules.other.firefox
+    outputs.modulesHome.other.firefox
   ];
   # Make extra directories
   home.activation.createDirs = pkgs.lib.mkAfter ''
@@ -43,5 +43,5 @@
   systemd.user.startServices = "sd-switch";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "24.05";
+  home.stateVersion = "25.05";
 }

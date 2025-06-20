@@ -19,9 +19,10 @@
     ];
   };*/
 
+  # We have computer, we have user. NO MORE
   inputs = {
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
 
     modules = {
       url = "github:syshotdev/nixos-modules";
@@ -30,7 +31,7 @@
     #nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
 
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
   };
 
   outputs = {
@@ -47,17 +48,10 @@
 
     hashedPassword = "...";
 
-    #systemModules = inputs.modules.outputs.systemModules;
-    #homeModules = inputs.modules.outputs.homeModules;
-    #scriptModules = inputs.modules.outputs.scriptModules;
-
-    # Custom packages (to be built) not in the nix repository
-    # This variable *only* lists the paths to the packages, you have to build them and include them into pkgs.
-    #customPackages = inputs.modules.outputs.customPackages;
-
-    systemModules = import ./modules/system/default.nix;
-    homeModules = import ./modules/home;
-    scriptModules = import ./modules/scripts;
+    modulesSystem = inputs.modules.outputs.systemModules;
+    modulesHome = inputs.modules.outputs.homeModules;
+    system = import ./modules/system/default.nix;
+    scripts = import ./modules/scripts;
     customPackages = import ./modules/custom-packages;
 
     nixosConfigurations = {

@@ -132,5 +132,5 @@
     openssl
   ];
 
-  system.stateVersion = "24.05"; # Version of system
+  system.stateVersion = "25.05"; # Version of system
 }

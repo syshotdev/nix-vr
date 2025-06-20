@@ -15,8 +15,8 @@ in {
   imports = [
     (import ../base.nix { inherit inputs outputs config lib pkgs user; } )
 
-    (import outputs.homeModules.development.git { inherit user nickname email lib; })
-    outputs.homeModules.development.neovim
+    (import outputs.modulesHome.development.git { inherit user nickname email lib; })
+    outputs.modulesHome.development.neovim
   ];
 
   home.packages = with pkgs; [ 
