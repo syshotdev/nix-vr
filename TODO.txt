@@ -1,4 +1,10 @@
 Things I should try:
+# For me next time: Make all packages come from the same revision,
+follow the rest of these changes
+
+Alvr previous version (see if that fixes it)
+Set environment variables
+Send this to github and post it on the issue forum
 
 Create new, completely fresh environment
 
