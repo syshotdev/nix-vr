@@ -15,11 +15,18 @@ in {
   imports = [
     (import ../base.nix { inherit inputs outputs config lib pkgs user; } )
 
+    outputs.modulesHome.other.firefox
     (import outputs.modulesHome.development.git { inherit user nickname email lib; })
-    outputs.modulesHome.development.neovim
+    (import outputs.modulesHome.development.neovim { inherit pkgs; })
   ];
 
+  # Default packages, to prevent softlocks
   home.packages = with pkgs; [ 
+    git
     rhythmbox
+    wget
+    ripgrep
+    openssl
+    gnome-system-monitor
   ];
 }

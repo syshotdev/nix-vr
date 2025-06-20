@@ -9,6 +9,8 @@
 }: 
 {
   imports = [
+    ./hardware-configuration.nix
+    ../base.nix
     outputs.system.optimizations.cpu
     outputs.system.optimizations.gpu
     outputs.system.optimizations.intel-cpu
@@ -19,8 +21,6 @@
     #outputs.system.vr.alvr
 
     outputs.scripts
-    ./hardware-configuration.nix
-    ../base.nix
   ];
 
   environment.systemPackages = with pkgs; [
@@ -35,7 +35,7 @@
     };
   };
 
-  home-manager.users.syshotdev = import ../../users/syshotdev;
+  home-manager.users.syshotdev = import ../../users/syshotdev { inherit inputs outputs lib config pkgs; };
 
   nix.settings.trusted-users = ["sudo" "syshotdev"]; # Who is given sudo permissions
 
