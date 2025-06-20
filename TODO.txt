@@ -1,0 +1,147 @@
+Things I should try:
+
+Create new, completely fresh environment
+
+https://steamcommunity.com/app/250820/discussions/2/1640917625015598552/
+Factory reset SteamVR
+
+Restart computer
+
+Mesa
+Nix-gl with alvr/steamvr
+Steam-run with alvr/steamvr
+
+https://discourse.nixos.org/t/alvr-cant-launch-steamvr-steam-desktop-is-not-executable/43845
+Running steamvr works through alvr but not through steam
+Running steamvr through alvr crashes because of .desktop not found or something
+Fix:
+xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+};
+
+https://discourse.nixos.org/t/troubleshooting-steamvr/17406
+Steam.enable
+my-path-to-the-simula-git-repo/config/config.dhall “OpenXR” to “OpenVR”
+
+https://discourse.nixos.org/t/help-getting-steamvr-running/4455
+hardware.steam-hardware.enable = true;
+xmonad settings (what)
+307 error for some user
+
+https://curiouslynerdy.com/nixos-steamvr-openxr/
+steam.enabled
+$XDG_CONFIG_HOME/openxr/1/active_runtime.json, steamvr and vrclient.so
+patchelf vrclient stuff
+
+https://www.reddit.com/r/NixOS/comments/1l8pnf7/state_of_alvr/
+Alvr option
+
+https://lvra.gitlab.io/docs/distros/nixos/
+Use monado
+Monado config: ~/.config/openxr/1/active_runtime.json
+Stuttering with monado?: U_PACING_COMP_MIN_TIME_MS = "5"; to systemd.user.services.monado.environment 
+Similarly, setting the cpu Niceness value to a higher priority manually with renice -20 -p $(pgrep monado) could also help.
+
+https://help.steampowered.com/en/faqs/view/18A4-1E10-8A94-3DDA
+Test different graphics drivers
+Mesa >22
+
+https://wiki.nixos.org/w/index.php?title=VR/ja&mobileaction=toggle_view_desktop
+Monado and OpenComposite
+Also: WiVRn, SteamVR, Envision, and wlx-overlay-s
+systemd.user.services.monado.environment = {
+  STEAMVR_LH_ENABLE = "1";
+  XRT_COMPOSITOR_COMPUTE = "1";
+  WMR_HANDTRACKING = "1";
+};
+Start it via
+$ systemctl --user start monado.service
+$ journalctl --user --follow --unit monado.service
+Need git-lfs btw
+
+https://nixos.wiki/wiki/Steam
+LD_LIBRARY_PATH stuff
+graphics.enable 32 bit
+VK_ICD_FILENAMES
+sudo setcap CAP_SYS_NICE+ep
+
+https://discourse.nixos.org/t/vr-not-working-correctly-drm-leasing-issue/58684/9
+WAYLAND_DISPLAY='' QT_QPA_PLATFORM=xcb ~/.local/share/Steam/steamapps/common/SteamVR/bin/vrmonitor.sh %command%
+Make sure everything is from the *exact same revision of nixpkgs*
+
+https://github.com/nix-community/nixpkgs-xr
+Nixpkgs-xr
+
+https://github.com/ValveSoftware/SteamVR-for-Linux/issues/499
+Latest mesa drivers
+
+https://search.nixos.org
+wlx-overlay-s
+
+
+https://www.reddit.com/r/linux_gaming/comments/sl36d8/oculus_quest_2_alvr_the_stream_not_happening_in/?chainedPosts=t3_btudmj
+uhhhh install a certain package and run ldconfig
+
+https://www.reddit.com/r/SteamVR/comments/yhflvg/anyone_try_steamvr_on_linux_via_alvr/
+Install libx264.so.155 and libx265.so.179
+
+
+https://github.com/alvr-org/ALVR/issues/2201
+"Look at linux troubleshooting, vrmonitor.sh %command%"
+
+https://github.com/alvr-org/ALVR/wiki/Troubleshooting#alvr-starts-fine-but
+Turn on alvr_server in addons in SteamVR
+
+https://forum.manjaro.org/t/minecraft-vr-vivecraft-with-avlr-does-not-work-black-screen/170950
+ALVR wiki troubleshooting worked
+
+https://github.com/alvr-org/ALVR/issues/2792
+Ongoing problem with encoder, CUDA, NVENC, vrmonitor.sh %command% annoying line
+
+https://github.com/alvr-org/ALVR/wiki/Linux-Troubleshooting
+https://www.reddit.com/r/linux_gaming/comments/1i99ydd/steamvr_via_alvr_on_nixos_fails_to_connect_to/
+Launch options (~/.local/share/Steam/steamapps/common/SteamVR/bin/vrmonitor.sh %command%)
+
+https://github.com/NixOS/nixpkgs/issues/359680
+Force software encoder?
+
+https://github.com/alvr-org/ALVR/issues/2242
+Ongoing, but someone said that tcp fixes something
+
+Disable foviated rendering
+Consistent bitrate over adaptive
+TCP instead of UDP, or switch
+Disable firewall (I have no idea how to do this)
+
+https://github.com/NixOS/nixpkgs/issues/276835
+Don't use AMDVLK drivers
+
+https://github.com/NixOS/nixpkgs/issues/264896
+Don't wrap steam in... some package... Idk I wasn't paying attention
+
+https://github.com/ValveSoftware/SteamVR-for-Linux/issues/499
+"enableLinuxVulkanAsync" : false, in /home/user/.steam/steam/config/steamvr.vrsettings
+
+https://github.com/alvr-org/ALVR/issues/2537
+Set target framerate on quest and pc to same thing
+https://xeiaso.net/blog/nixos-vr-hell-2021-12-02/
+
+export SDL_VIDEODRIVER=x11
+cadey.sway.output."DP-2".disable = "";
+Enable multilib?
+Pulseaudio daemon.conf, default-sample-rate = 48000
+Restart computer
+~/.local/share/Steam/steamapps/common/SteamVR/bin/vrwebhelper/linux64/vrwebhelper.sh put:
+export LD_LIBRARY_PATH="${DIR}:${STEAM_RUNTIME_HEAVY}${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}"
+
+https://github.com/davidak/nixos-config/blob/840956350d96c3d621e21c17f0bc5bc8765074d8/profiles/gaming.nix
+A guy's config that worked
+
+https://github.com/ValveSoftware/SteamVR-for-Linux
+Not useful rn, but valve steamvr official repo
+
+
+Things that worked:
+
+Things that did not work:

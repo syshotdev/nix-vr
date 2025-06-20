@@ -14,6 +14,8 @@ sudo setcap CAP_SYS_NICE=eip $steam_location/steamapps/common/SteamVR/bin/linux6
 # Entire reason this exists: https://curiouslynerdy.com/nixos-steamvr-openxr/
 export VRCLIENT=$steam_location/steamapps/common/SteamVR/bin/linux64/vrclient.so
 export STOREPATH=$(nix-store -qR $(which steam) | grep steam-fhs)/lib64
+export SDL_VIDEODRIVER=x11
+
 #export LD_LIBRARY_PATH=$steam_location/steamapps/common/SteamVR/bin/linux64
 #export VR_RUNTIME=$steam_location/steam/steamapps/common/SteamVR
 #export VRCOMPOSITOR_LOG_LEVEL="warn"

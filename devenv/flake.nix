@@ -13,6 +13,10 @@
   # Set different vars
   # Make sure paths to vrclient and things are in right place
   # Reinstall steamvr
+  # ~/.local/share/Steam/steamapps/common/SteamVR/bin/vrwebhelper/linux64/ export LD_LIBRARY_PATH="${DIR}:${STEAM_RUNTIME_HEAVY}${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}"
+  # $XDG_CONFIG_HOME/openxr/1/active_runtime.json /home/josh/.local/share/Steam/steamapps/common/SteamVR/bin/linux64/vrclient.so SteamVR
+  #
+
   outputs = { self, nixpkgs, nixGL, flake-utils, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
@@ -44,3 +48,14 @@
       });
 }
 
+# Tried:
+/*
+# TODO: For next time: Create a checklist for all the things I need to do, in order, add every single step that I did ever.
+# As well as that, add trying monado, changing config files, stuff like enableVulkanFoviation or whatever
+https://github.com/alvr-org/ALVR/wiki/Linux-Troubleshooting#black-screen-even-when-steamvr-shows-movement
+https://steamcommunity.com/app/250820/discussions/2/1640917625015598552/
+https://xeiaso.net/blog/nixos-vr-hell-2021-12-02/
+https://curiouslynerdy.com/nixos-steamvr-openxr/
+https://discourse.nixos.org/t/troubleshooting-steamvr/17406
+https://simulavr.com/blog/simula-on-nixos/
+*/
