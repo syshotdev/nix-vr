@@ -9,8 +9,15 @@
   mkdir -p ${lib.concatMapStrings (dir: " \$HOME/${dir}") ["3d" "Programming" "Programs" "Sounds" "Temporary"]}
 '';
 
+  # Default packages, to prevent softlocks
   home.packages = with pkgs; [ 
-    gnome.gnome-system-monitor
+    git
+    #firefox
+    rhythmbox
+    wget
+    ripgrep
+    openssl
+    gnome-system-monitor
   ];
 
   # ---------- home-manager boilerplate starts HERE ----------

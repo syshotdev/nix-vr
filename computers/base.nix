@@ -86,8 +86,7 @@
   };
 
   # Sound stuff
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true; # This to make less audio stuttering
   services.pipewire = { 
     enable = true;
@@ -119,18 +118,6 @@
     # Workaround for https://github.com/nix-community/home-manager/issues/2942
     allowUnfreePredicate = (_: true); # Ima be honest Idk if it was an issue in the first place
   };
-
-  # Packages that should be enabled with every account.
-  # (Might change this to be in the "Modules" area, 
-  # for extra customizability)
-  environment.systemPackages = with pkgs; [
-    git
-    firefox
-    rhythmbox
-    wget
-    ripgrep
-    openssl
-  ];
 
   system.stateVersion = "25.05"; # Version of system
 }
