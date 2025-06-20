@@ -5,7 +5,6 @@
   /*
   boot.blacklistedKernelModules = ["nouveau"];
   boot.kernelParams = [ "nouveau.modeset=0" "nvidia-drm.fbdev=1" ];
-  services.xserver.videoDrivers = [ "nvidia" "modesetting" ];
   */
   environment.systemPackages = with pkgs; [ 
     vulkan-tools 
@@ -17,7 +16,7 @@
     #linuxPackages.nvidia_x11
   ];
 
-
+  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     open = false;
     nvidiaSettings = true;
