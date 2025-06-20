@@ -11,6 +11,9 @@ Mesa
 Nix-gl with alvr/steamvr
 Steam-run with alvr/steamvr
 
+https://nixos.wiki/wiki/Steam
+(Enable steam with other options)
+
 https://discourse.nixos.org/t/alvr-cant-launch-steamvr-steam-desktop-is-not-executable/43845
 Running steamvr works through alvr but not through steam
 Running steamvr through alvr crashes because of .desktop not found or something

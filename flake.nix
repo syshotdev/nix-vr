@@ -6,7 +6,7 @@
 # Fix issues
 
 {
-  description = "Syshotdev's flake for VR, gonna be a long rebuild when I Garbage Collect";
+  description = "Syshotdev's flake for VR";
 
   /*
   nixConfig = {
@@ -48,8 +48,11 @@
 
     hashedPassword = "...";
 
+    # Modules from my other config
     modulesSystem = inputs.modules.outputs.systemModules;
     modulesHome = inputs.modules.outputs.homeModules;
+
+    # Local modules
     system = import ./modules/system/default.nix;
     scripts = import ./modules/scripts;
     customPackages = import ./modules/custom-packages;

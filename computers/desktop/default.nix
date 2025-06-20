@@ -15,10 +15,10 @@
     outputs.system.optimizations.gpu
     outputs.system.optimizations.intel-cpu
     outputs.system.optimizations.nvidia-gpu
-    #outputs.system.steam
+    outputs.system.steam
     outputs.modulesSystem.kitty
 
-    #outputs.system.vr.alvr
+    outputs.system.vr.alvr
 
     outputs.scripts
   ];

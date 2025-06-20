@@ -10,6 +10,7 @@
   };
 
   # Extra dependencies for steamVR
+  /*
   programs.steam.package = pkgs.steam.override {
     extraPkgs = pkgs: with pkgs; [ 
       libcap 
@@ -17,4 +18,5 @@
       usbutils
     ];
   };
+  */
 }
