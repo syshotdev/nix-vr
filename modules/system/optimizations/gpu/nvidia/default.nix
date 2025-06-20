@@ -9,11 +9,18 @@
   environment.systemPackages = with pkgs; [ 
     vulkan-tools 
     mesa-demos 
-    cudatoolkit 
+    #cudatoolkit 
     #cudaPackages.cuda_cudart
     #cudaPackages.cuda_nvcc
     #cudaPackages.cuda_cccl
-    linuxPackages.nvidia_x11
+    #linuxPackages.nvidia_x11
+     git gitRepo gnupg autoconf curl
+     procps gnumake util-linux m4 gperf unzip
+     cudatoolkit linuxPackages.nvidia_x11
+     libGLU libGL
+     xorg.libXi xorg.libXmu freeglut
+     xorg.libXext xorg.libX11 xorg.libXv xorg.libXrandr zlib 
+     ncurses5 stdenv.cc binutils
   ];
 
   services.xserver.videoDrivers = [ "nvidia" ];
