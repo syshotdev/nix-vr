@@ -9,11 +9,11 @@
   environment.systemPackages = with pkgs; [ 
     vulkan-tools 
     mesa-demos 
-    #cudatoolkit 
+    cudatoolkit 
     #cudaPackages.cuda_cudart
     #cudaPackages.cuda_nvcc
     #cudaPackages.cuda_cccl
-    #linuxPackages.nvidia_x11
+    linuxPackages.nvidia_x11
   ];
 
   services.xserver.videoDrivers = [ "nvidia" ];
