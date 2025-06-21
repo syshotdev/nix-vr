@@ -2,7 +2,7 @@
 {
   programs.alvr = {
     enable = true;
-    package = pkgs.unstable.alvr;
+    package = pkgs.pkgs2411.alvr;
   };
   environment.systemPackages = with pkgs; [
     #unstable.steam-run
