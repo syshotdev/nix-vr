@@ -2,8 +2,7 @@
 # to quickly set up essential services.
 # Credits: my original config (made by the nixos installer), github user MattCairns with his
 # nixos config, vimjoyer's videos, and a couple other people who are on GitHub. Thank you guys
-{
-  inputs,
+{ inputs,
   outputs,
   computer,
   config,
@@ -73,14 +72,8 @@
     displayManager.lightdm.enable = true;
     desktopManager.cinnamon.enable = true;
 
-    # Settings for desktop, like theme and keybinds
-    desktopManager.cinnamon = {
-      extraGSettingsOverridePackages = with pkgs; [];
-      extraGSettingsOverrides = '' '';
-    };
-
-    xkb.layout = "us"; # Probably keyboard layout
-    xkb.variant = ""; # No idea what this means
+    xkb.layout = "us";
+    xkb.variant = "";
   };
 
   # Sound stuff
@@ -94,30 +87,5 @@
     pulse.enable = true;
   };
 
-  # Fonts because Chinese / Unicode characters don't show up correctly
-  fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-extra
-    noto-fonts-cjk-sans
-    noto-fonts-cjk-serif
-  ];
-
-  # https://discourse.nixos.org/t/mixing-stable-and-unstable-packages-on-flake-based-nixos-system/50351/4
-  # Add unstable packages
-  nixpkgs.overlays = [
-    (final: _: {
-      pkgs2411 = import inputs.nixpkgs-24_11 { inherit (final.stdenv.hostPlatform) system; inherit (final) config; };
-      unstable = import inputs.nixpkgs-unstable {
-        inherit (final.stdenv.hostPlatform) system;
-        inherit (final) config;
-      };
-    })
-  ];
-  nixpkgs.config = {
-    allowUnfree = true; # Allow proprietary packages
-    # Workaround for https://github.com/nix-community/home-manager/issues/2942
-    allowUnfreePredicate = (_: true);
-  };
-
-  system.stateVersion = "24.05"; # Version of system
+  system.stateVersion = "24.05";
 }
