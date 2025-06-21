@@ -28,10 +28,6 @@
     enable = true; 
   };
 
-  # Disable IPv6
-  networking.enableIPv6 = false;
-  boot.kernelParams = ["ipv6.disable=1"]; # Firefox takes a long time to load and apparently this helps
-
   time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
