@@ -1,5 +1,5 @@
 {
-  gpu = ./gpu; # General GPU settings like optimizations
+  gpu = ./gpu; # General GPU settings like graphics options/optimizations
   nvidia-gpu = ./gpu/nvidia;
 
   cpu = ./cpu; # General CPU optimizations (Find battery life settings there)

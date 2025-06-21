@@ -27,7 +27,10 @@
   let
     inherit (self) outputs;
 
+    # Shortcuts for editing user/computer
     computer = "desktop";
+    user = "syshotdev";
+
     system = "x86_64-linux";
     pkgs = import nixpkgs {
       inherit system;
@@ -37,12 +40,12 @@
       ];
       config = {
         allowUnfree = true;
-        # workaround for HM https issue
+        # Workaround
         allowUnfreePredicate = (_: true);
       };
     };
 
-    specialArgs = {inherit inputs outputs pkgs computer;};
+    specialArgs = { inherit inputs outputs pkgs computer user; };
   in {
     # Modules from my other config
     modulesSystem = inputs.modules.outputs.systemModules;
