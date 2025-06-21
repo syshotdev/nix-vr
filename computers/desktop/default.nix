@@ -36,9 +36,9 @@
     };
   };
 
-  home-manager.users."${user}" = import ../../users/"${user}" { inherit inputs outputs lib config pkgs; };
+  home-manager.users."${user}" = import ../../users/${user} { inherit inputs outputs lib config pkgs; };
 
-  nix.settings.trusted-users = ["sudo" ""${user}""]; # Who is given sudo permissions
+  nix.settings.trusted-users = ["sudo" "${user}"]; # Who is given sudo permissions
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.05";
