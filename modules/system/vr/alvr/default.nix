@@ -1,10 +1,8 @@
 { pkgs, ... }:
 {
-  programs.alvr = {
-    package = pkgs.unstable.alvr;
-    enable = true;
-    openFirewall = true;
-  };
+  environment.systemPackages = with pkgs; [
+    alvr
+  ];
   # Expect steam
   programs.steam.enable = true;
 }

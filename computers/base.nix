@@ -84,8 +84,9 @@
   };
 
   # Sound stuff
-  services.pulseaudio.enable = false;
+  sound.enable = true;
   security.rtkit.enable = true; # This to make less audio stuttering
+  hardware.pulseaudio.enable = false;
   services.pipewire = { 
     enable = true;
     alsa.enable = true;
@@ -117,5 +118,5 @@
     allowUnfreePredicate = (_: true);
   };
 
-  system.stateVersion = "25.05"; # Version of system
+  system.stateVersion = "24.05"; # Version of system
 }

@@ -22,9 +22,6 @@
     outputs.system.steam
     outputs.system.vr.alvr
     outputs.scripts
-
-    # Terminal from my own config
-    outputs.modulesSystem.kitty
   ];
 
   environment.systemPackages = with pkgs; [
@@ -43,5 +40,5 @@
   nix.settings.trusted-users = ["sudo" "syshotdev"]; # Who is given sudo permissions
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "25.05";
+  system.stateVersion = "24.05";
 }

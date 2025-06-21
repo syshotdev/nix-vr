@@ -17,7 +17,7 @@ in {
 
     outputs.modulesHome.other.firefox
     (import outputs.modulesHome.development.git { inherit user nickname email lib; })
-    (import outputs.modulesHome.development.neovim { inherit pkgs; })
+    outputs.modulesHome.development.neovim
   ];
 
   # Useful packages
@@ -26,6 +26,6 @@ in {
     wget
     ripgrep
     openssl
-    gnome-system-monitor
+    gnome.gnome-system-monitor
   ];
 }
