@@ -1,6 +1,5 @@
 # Alright here's the plan:
 # Basically, fix this flake to be as simple as physically possible
-# nix-collect-garbage
 # Add each required thing for running VR
 # Test, test, test.
 # Fix issues
@@ -8,6 +7,7 @@
 {
   description = "Syshotdev's flake for VR";
 
+  # Removes NVIDIA build times
   nixConfig = {
     extra-substituters = [
       "https://nix-community.cachix.org"
@@ -18,19 +18,14 @@
     ];
   };
 
-  # We have computer, we have user. NO MORE
   inputs = {
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/release-25.05";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    modules = {
-      url = "github:syshotdev/nixos-modules";
-    };
-
-    #nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
-
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    modules.url = "github:syshotdev/nixos-modules";
   };
 
   outputs = {
@@ -44,9 +39,6 @@
     specialArgs = {inherit inputs outputs nixpkgs computer;};
     computer = "desktop";
   in {
-
-    hashedPassword = "...";
-
     # Modules from my other config
     modulesSystem = inputs.modules.outputs.systemModules;
     modulesHome = inputs.modules.outputs.homeModules;
@@ -64,6 +56,7 @@
             home-manager.extraSpecialArgs = specialArgs;
           }
           
+          # Import config file "computer"
           ./computers/${computer}
         ];
       };

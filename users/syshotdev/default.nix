@@ -20,9 +20,8 @@ in {
     (import outputs.modulesHome.development.neovim { inherit pkgs; })
   ];
 
-  # Default packages, to prevent softlocks
+  # Useful packages
   home.packages = with pkgs; [ 
-    git
     rhythmbox
     wget
     ripgrep

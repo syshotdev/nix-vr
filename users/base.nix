@@ -1,7 +1,5 @@
-# Every single user's base
-{ inputs, outputs, lib, user, pkgs,  ...}:
+{ user, ...}:
 {
-  # TODO: Decide if packages need to be in here-- or if I can remove this entirely.
   # ---------- home-manager boilerplate starts HERE ----------
   # Enable home-manager and git (Essential)
   programs.home-manager.enable = true;
