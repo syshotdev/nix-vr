@@ -41,19 +41,7 @@
     inherit (self) outputs;
     specialArgs = {inherit inputs outputs nixpkgs computer;};
     computer = "desktop";
-    system = "x86_64-linux";
   in {
-    pkgs = import nixpkgs {
-      inherit system;
-      config = { allowUnfree = true; };
-      overlays = [
-        (final: prev: {
-          pkgs2411 = import nixpkgs-24_11 {inherit system;};
-          unstable = import nixpkgs-unstable {inherit system;};
-        })
-      ];
-    };
-
     # Modules from my other config
     modulesSystem = inputs.modules.outputs.systemModules;
     modulesHome = inputs.modules.outputs.homeModules;
