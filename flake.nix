@@ -23,6 +23,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-24_11.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     modules.url = "github:syshotdev/nixos-modules";
@@ -32,13 +33,27 @@
     self,
     home-manager,
     nixpkgs,
+    nixpkgs-unstable,
+    nixpkgs-24_11,
     ...
   } @ inputs: 
   let
     inherit (self) outputs;
     specialArgs = {inherit inputs outputs nixpkgs computer;};
     computer = "desktop";
+    system = "x86_64-linux";
   in {
+    pkgs = import nixpkgs {
+      inherit system;
+      config = { allowUnfree = true; };
+      overlays = [
+        (final: prev: {
+          pkgs2411 = import nixpkgs-24_11 {inherit system;};
+          unstable = import nixpkgs-unstable {inherit system;};
+        })
+      ];
+    };
+
     # Modules from my other config
     modulesSystem = inputs.modules.outputs.systemModules;
     modulesHome = inputs.modules.outputs.homeModules;

@@ -106,6 +106,7 @@
   # Add unstable packages
   nixpkgs.overlays = [
     (final: _: {
+      pkgs2411 = import inputs.nixpkgs-24_11 { inherit (final.stdenv.hostPlatform) system; inherit (final) config; };
       unstable = import inputs.nixpkgs-unstable {
         inherit (final.stdenv.hostPlatform) system;
         inherit (final) config;
