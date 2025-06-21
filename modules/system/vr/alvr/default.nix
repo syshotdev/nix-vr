@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    alvr
+    unstable.alvr
   ];
   # Expect steam
   programs.steam.enable = true;
