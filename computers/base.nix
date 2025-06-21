@@ -33,10 +33,8 @@
   networking.enableIPv6 = false;
   boot.kernelParams = ["ipv6.disable=1"]; # Firefox takes a long time to load and apparently this helps
 
-
   time.timeZone = "America/Los_Angeles";
-  i18n.defaultLocale = "en_US.UTF-8"; # (Select internationalisation properties.) What does that mean???
-  # I'm not sure what this option does, but maybe something with time and identification.
+  i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
     LC_IDENTIFICATION= "en_US.UTF-8";
@@ -116,7 +114,7 @@
   nixpkgs.config = {
     allowUnfree = true; # Allow proprietary packages
     # Workaround for https://github.com/nix-community/home-manager/issues/2942
-    allowUnfreePredicate = (_: true); # Ima be honest Idk if it was an issue in the first place
+    allowUnfreePredicate = (_: true);
   };
 
   system.stateVersion = "25.05"; # Version of system

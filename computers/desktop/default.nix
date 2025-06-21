@@ -11,16 +11,20 @@
   imports = [
     ./hardware-configuration.nix
     ../base.nix
+
+    # Hardware configurations
     outputs.system.optimizations.cpu
     outputs.system.optimizations.gpu
     outputs.system.optimizations.intel-cpu
     outputs.system.optimizations.nvidia-gpu
+
+    # Local packages for quick iteration
     outputs.system.steam
-    outputs.modulesSystem.kitty
-
     outputs.system.vr.alvr
-
     outputs.scripts
+
+    # Terminal from my own config
+    outputs.modulesSystem.kitty
   ];
 
   environment.systemPackages = with pkgs; [
@@ -29,7 +33,6 @@
 
   users.users = {
     "syshotdev" = {
- 
       isNormalUser = true;
       extraGroups = ["wheel" "dialout"];
     };
