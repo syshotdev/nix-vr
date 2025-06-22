@@ -1,3 +1,0 @@
-[submodule "modules-repo"]
-	path = modules-repo
-	url = git@github.com:syshotdev/nixos-modules.git

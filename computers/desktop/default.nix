@@ -36,7 +36,7 @@
     };
   };
 
-  home-manager.users."${user}" = import ../../users/${user} { inherit inputs outputs lib config pkgs; };
+  home-manager.users."${user}" = import ../../users/${user} { inherit inputs outputs user lib config pkgs; };
 
   nix.settings.trusted-users = ["sudo" "${user}"]; # Who is given sudo permissions
 

@@ -7,8 +7,6 @@
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-24_11.url = "github:nixos/nixpkgs/nixos-24.11";
-
-    modules.url = "github:syshotdev/nixos-modules";
   };
 
   outputs = {
@@ -40,14 +38,9 @@
 
     specialArgs = { inherit inputs outputs pkgs computer user; };
   in {
-    # Modules from my other config
-    modulesSystem = inputs.modules.outputs.systemModules;
-    modulesHome = inputs.modules.outputs.homeModules;
-
     # Local modules
     system = import ./modules/system/default.nix;
     scripts = import ./modules/scripts;
-    customPackages = import ./modules/custom-packages;
 
     nixosConfigurations = {
       "${computer}" = nixpkgs.lib.nixosSystem {
