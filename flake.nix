@@ -1,9 +1,3 @@
-# Alright here's the plan:
-# Basically, fix this flake to be as simple as physically possible
-# Add each required thing for running VR
-# Test, test, test.
-# Fix issues
-
 {
   description = "Syshotdev's flake for VR";
 
@@ -40,8 +34,7 @@
       ];
       config = {
         allowUnfree = true;
-        # Workaround
-        allowUnfreePredicate = (_: true);
+        allowUnfreePredicate = (_: true); # <-- Workaround
       };
     };
 
